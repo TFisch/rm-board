@@ -1,28 +1,34 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Tab 1</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Tab 1</ion-title>
-        </ion-toolbar>
-      </ion-header>
-    
-      <ExploreContainer name="Tab 1 page" />
-    </ion-content>
-  </ion-page>
+  <ion-content>
+    <bytes-container></bytes-container>
+    <audio ref="audioElm">
+      <source src="assets/audio/ben_no.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+    <button v-on:click="play">X</button>
+  </ion-content>
 </template>
 
-<script lang="ts">
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
-import ExploreContainer from '@/components/ExploreContainer.vue';
+<script>
+import BytesContainer from '@/components/BytesContainer.vue';
+import { IonContent } from '@ionic/vue';
+import { defineComponent } from 'vue';
 
-export default  {
-  name: 'Tab1',
-  components: { ExploreContainer, IonHeader, IonToolbar, IonTitle, IonContent, IonPage }
-}
+export default defineComponent({
+  components: {
+    IonContent,
+    BytesContainer
+  },
+  methods: {
+    play: function(event) {
+      console.log(this.$refs);
+    }
+  }
+});
 </script>
+
+<style scoped>
+.col-center-content {
+  text-align: center;
+}
+</style>
